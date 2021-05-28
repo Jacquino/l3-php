@@ -1,0 +1,14 @@
+{
+  "home": {
+    "path": "/",
+    "controller": "HomeController@home"
+  },
+  "catalogue": {
+    "path": "/catalog",
+    "controller": "CatalogueController@view"
+  },
+  "catalog_product" : {
+    "path" : "/catalog/product",
+    "controller" : "CatologController@viewProduct"
+  }
+}
