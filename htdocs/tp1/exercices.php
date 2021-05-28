@@ -6,9 +6,8 @@
 $note_maths = 15;
 $note_francais = 12;
 $note_histoire_geo = 9;
-$moyenne = 0;
+$moyenne = ($note_maths+$note_francais+$note_histoire_geo)/3;
 echo 'La moyenne est de '.$moyenne.' / 20.';
-
 
 /**
  * 2.
@@ -16,7 +15,7 @@ echo 'La moyenne est de '.$moyenne.' / 20.';
  */
 $prix_ht = 50;
 $tva = 20;
-$prix_ttc = 0;
+$prix_ttc = $prix_ht+($prix_ht*($tva/100));
 echo 'Le prix TTC du produit est de ' . $prix_ttc . ' €.';
 
 
@@ -25,16 +24,22 @@ echo 'Le prix TTC du produit est de ' . $prix_ttc . ' €.';
  * Déclarer une variable $test qui contient la valeur 42. En utilisant la fonction var_dump(),
  * faire en sorte que le type de la variable $test soit string et que la valeur soit bien de 42.
 */
-
-
+$test = 42;
+$test = strval($test);
+var_dump($test);
 
 /**
  * 4.
  * Déclarer une variable $sexe qui contient une chaîne de caractères.
  * Créer une condition qui affiche un message différent en fonction de la valeur de la variable.
  */
+$sexe = "homme";
 
-
+if($sexe == "homme"){
+    echo 'OK';
+}else{
+    echo 'KO';
+}
 
 /**
  * 5.
@@ -42,12 +47,23 @@ echo 'Le prix TTC du produit est de ' . $prix_ttc . ' €.';
  * Créer une condition qui affiche un message si l'heure est le matin, l'après-midi ou la nuit.
  */
 
+$heure = 12;
+if($heure <= 13 && $heure >=7){
+    echo "matin";
+}elseif ($heure > 13 && $heure <= 21){
+    echo "après-midi";
+}else{
+    echo "nuit";
+}
 
 /**
  * 6.
  * En utilisant la boucle for, afficher la table de multiplication du chiffre 5.
  */
 
+for($i = 1; $i <= 10; $i++){
+    echo $i*5 . " ";
+}
 
 /**
  * 7.
@@ -57,7 +73,18 @@ echo 'Le prix TTC du produit est de ' . $prix_ttc . ' €.';
  *     . incrémenter sa valeur de 2 ;
  * Si la valeur de la variable est égale à 10, la mettre en valeur avec la balise HTML appropriée.
  */
-
+function Question7(){
+    $value = 0;
+    while($value != 20){
+        if ($value == 10){
+            echo " <strong>$value</strong>";
+        }else{
+            echo $value;
+        }
+        $value = $value + 2;
+        echo '<br>';
+    }
+}
 
 /**
  * 8.
@@ -69,7 +96,16 @@ echo 'Le prix TTC du produit est de ' . $prix_ttc . ' €.';
  *
  * Afficher les valeurs de tous les éléments du tableau en utilisant la boucle foreach.
  */
+$pays_capitale = array(
+    'France' => 'Paris',
+    'Allemagne' => 'Berlin',
+    'Italie' => 'Rome',
+);
 
+foreach($pays_capitale as $key => $elem){
+    echo $key;
+    echo $elem;
+}
 
 /**
  * 9.
@@ -85,6 +121,12 @@ $pays_population = array(
     'Mexique' => 122273500,
     'Allemagne' => 82800000,
 );
+
+foreach($pays_population as $key => $elem){
+    if($elem>20000000){
+        echo $key;
+    }
+}
 
 /**
  * 10.
@@ -103,6 +145,10 @@ $pays_population = array(
     'Allemagne' => 82800000,
 );
 
+foreach($pays_population as $key => $elem){
+    echo $key . "il y a " . $elem . "d'habitants";
+}
+
 /**
  * 11.
  * En utilisant le tableau de keys ci-dessous, reordonner le pour le ranger par taille de longueur de chaine de caractere
@@ -114,6 +160,22 @@ $keys = array(
     "p8333335p",
     "x24p"
 );
+
+function cmp ($a, $b){
+    $la = strlen($a);
+    $lb = strlen($b);
+    if($la == $lb){
+        return 0;
+    }
+    return ($a < $b) ? -1 : 1;
+}
+
+usort($keys,'cmp');
+
+foreach($keys as $value){
+    echo " ".$value;
+}
+
 
 /* résultat une fois ordonné :
 array(4) {
