@@ -1,32 +1,52 @@
 <?php
 
-use App\Controller\CatalogueController;
 
 class Router
 {
-    function process(){
-        $URI =  $_SERVER['REQUEST_URI'];
-        $controller = "";
-        $json = file_get_contents("routes.json");
 
-        $parsed_json = json_decode($json,true);
+    private $controller = null;
+    private $method = null;
 
-        foreach($parsed_json as $v){
-            if($URI == $v['path']){
-                $controller = $v['controller'];
+    public function __construct()
+    {
+        $this->uri = (isset($_SERVER['REQUEST_URI']))? $_SERVER['REQUEST_URI'] : "/";
+    }
+
+    function process()
+    {
+        if(!$this->exist()){
+            $this->setRouteControllerByName("notFound");
+        }
+        return (new $this->controller())->{$this->method}();
+    }
+
+    private function getRoutesConfig() : array
+    {
+        $routesJson = file_get_contents("routes.json");
+        return json_decode($routesJson, true);
+    }
+
+    private function exist() : bool
+    {
+        foreach ($this->getRoutesConfig() as $route){
+            if(isset($route['path']) && $route['path'] === $this->uri){
+                $configController = explode('@',$route['controller']);
+                $this->controller = $configController[0];
+                $this->method = $configController[1];
+                return true;
             }
         }
+        return false;
+    }
 
-        if($controller == ""){
-            echo "404";
+    private function setRouteControllerByName(string $name) : void
+    {
+        $routesJson = json_decode(file_get_contents("routes.json"), true);
+        if(isset($routesJson[$name])){
+            $configController = explode('@',$routesJson[$name]['controller']);
+            $this->controller = $configController[0];
+            $this->method = $configController[1];
         }
 
-        if($controller == "CatalogueController@view"){
-            $catController = new CatalogueController();
-            $catController ->view();
-        }elseif($controller == "HomeController@home"){
-            $homController = new \App\Controller\HomeController();
-            $homController ->home();
-        }
     }
 }
