@@ -1,27 +1,36 @@
 <?php
 
+
 namespace App\Entity;
 
-class Product implements EntityInterface
+
+class Customer implements EntityInterface
 {
     private $id;
     private $name;
-    private $price;
+    private $age;
+
+
+    public function __construct($name, $price)
+    {
+        $this->name = $name;
+        $this->price = $price;
+    }
 
     /**
      * @return mixed
      */
-    public function getPrice()
+    public function getAge()
     {
-        return $this->price;
+        return $this->age;
     }
 
     /**
      * @param mixed $price
      */
-    public function setPrice($price): void
+    public function setAge($age): void
     {
-        $this->price = $price;
+        $this->age = $age;
     }
 
     /**
