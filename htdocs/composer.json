@@ -1,0 +1,17 @@
+{
+    "name": "root/htdocs",
+    "autoload": {
+        "psr-4": {
+            "Root\\Htdocs\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Adrien Decloitre",
+            "email": "07adrien@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.3"
+    }
+}

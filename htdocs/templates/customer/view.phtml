@@ -1,0 +1,15 @@
+<?php
+$customerList = $this->getData('customers');
+?>
+
+<?php include(BASE_DIR . '/templates/head.phtml') ?>
+
+    Ma view Customer Page
+    <ul>
+
+        <?php foreach ($customerList as $customer) : ?>
+            <li><?= $customer->getName() ?> à <?= $customer->getAge() ?>ans</li>
+        <?php endforeach; ?>
+    </ul>
+
+<?php include(BASE_DIR . '/templates/footer.phtml') ?>

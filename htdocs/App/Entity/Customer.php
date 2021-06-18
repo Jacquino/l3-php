@@ -10,13 +10,6 @@ class Customer implements EntityInterface
     private $name;
     private $age;
 
-
-    public function __construct($name, $price)
-    {
-        $this->name = $name;
-        $this->price = $price;
-    }
-
     /**
      * @return mixed
      */
