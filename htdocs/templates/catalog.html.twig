@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Welcome symfony!
+{% endblock %}
+{% block body %}
+    <ul>
+        {% for product in productList %}
+            <li>{{ product.getName() }} à {{ product.getPrice() }}$</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

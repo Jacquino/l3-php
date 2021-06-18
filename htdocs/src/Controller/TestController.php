@@ -14,6 +14,9 @@ class TestController extends AbstractController
      * @Route("/test", name="test_controller")
      */
     public function test() : Response{
-        return $this-> render("test.html.twig");
+
+        return $this-> render("catalog.html.twig",[
+            'name' => 'John',
+        ]);
     }
 }

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Welcome symfony!
+{% endblock %}
+{% block body %}
+    <ul>
+        {% for customer in customerList %}
+            <li>{{ customer.getName() }} à {{ customer.getAge() }} ans</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
