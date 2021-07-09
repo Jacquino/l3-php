@@ -29,7 +29,6 @@ class HomeController extends AbstractController
 
         $productRepository = $this->getDoctrine()->getRepository(Customer::class);
         $test = $productRepository->findAll();
-        var_dump($test);die;
         return $this-> render("home.html.twig");
     }
 }
